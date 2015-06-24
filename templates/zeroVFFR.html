@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block main %}
+<div>
+<form class="form-horizontal" method="POST" action="/submit">
+<fieldset>
+
+<!-- Form Name -->
+<legend>0D vFFR Model</legend>
+<input name='model' type='hidden' value='zerovffr'>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="samples">Number of Samples</label>
+  <div class="controls">
+    <input id="samples" name="samples" type="text" placeholder="number of samples" class="input-xlarge">
+
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="parameters">Input Parameter List</label>
+  <div class="controls">
+    <textarea id="parameters" name="parameters">X1 1 1 0 1
+X2 0 0 1 0
+X1 2 0 1 0</textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="inputs">Number of Inputs</label>
+  <div class="controls">
+    <input id="inputs" name="inputs" type="text" placeholder="inputs" class="input-xlarge" required="">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="outputs">Number of outputs</label>
+  <div class="controls">
+    <input id="outputs" name="outputs" type="text" placeholder="outputs" class="input-xlarge">
+
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="control-group">
+  <label class="control-label" for="location">HPC Location</label>
+  <div class="controls">
+    <select id="location" name="location" class="input-xlarge">
+      <option>Iceberg</option>
+      <option>N8</option>
+      <option>Furnace</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="script">Startup Script</label>
+  <div class="controls">
+    <input id="script" name="script" type="text" placeholder="SATask.sh" class="input-xlarge">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="workfolder">Work Folder</label>
+  <div class="controls">
+    <input id="workfolder" name="workfolder" type="text" placeholder="work folder" class="input-xlarge">
+
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="submit"></label>
+  <div class="controls">
+    <button id="submit" name="submit" class="btn btn-success">Submit</button>
+    <button id="cancel" name="cancel" class="btn btn-danger" type="reset">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+{% endblock %}
+
