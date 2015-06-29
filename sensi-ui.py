@@ -11,7 +11,7 @@ SENSI_PORT = os.getenv('SENSI_PORT', 8080)
 
 CMD_STR = "echo '{parameters}' > {workfolder}/{model}_parameters.txt && {script} {model} {workfolder}/{model}_parameters.txt {samples} {inputs} {outputs}"
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder = "./static")
 
 @app.route("/")
 def index():
