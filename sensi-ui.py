@@ -9,7 +9,7 @@ from settings import credentials
 SENSI_HOST = os.getenv('SENSI_HOST', "0.0.0.0")
 SENSI_PORT = os.getenv('SENSI_PORT', 8080)
 
-CMD_STR = "echo {parameters} > {workfolder}/{model}_parameters.txt && {script} {model} {workfolder}/{model}_parameters.txt {samples} {inputs} {outputs}"
+CMD_STR = "echo '{parameters}' > {workfolder}/{model}_parameters.txt && {script} {model} {workfolder}/{model}_parameters.txt {samples} {inputs} {outputs}"
 
 app = Flask(__name__)
 
@@ -117,11 +117,11 @@ def submit_ssh_command(params):
     logs.append("Submitting Sensi Job to %s..." % params['location'])
     command = generate_cmd_string(params)
     stdin, stdout, stderr = ssh.exec_command(command)
-    logs.append('Result of command %s is:' % command)
+    logs.append("Result of command %s is:" % command)
 
     while not stdout.channel.exit_status_ready():
        if stdout.channel.recv_ready():
-          logs.extend(stdout.readlines())
+        logs.extend(stdout.readlines())
 
   except paramiko.AuthenticationException:
     error = True
@@ -135,14 +135,14 @@ def submit_ssh_command(params):
   return error, logs
 
 # wait for VPN to be properly up ...
-while True:
-    p = Popen(["/webapp/sensi-ui/configvpn"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
-    output, err = p.communicate()
-    p = Popen(["route", "-n"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
-    output, err = p.communicate()
-    if output.count("ppp0")==2 and output.count("eth0")>=2:
-        break
-    time.sleep(5)
+# while True:
+#     p = Popen(["/webapp/sensi-ui/configvpn"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+#     output, err = p.communicate()
+#     p = Popen(["route", "-n"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+#     output, err = p.communicate()
+#     if output.count("ppp0")==2 and output.count("eth0")>=2:
+#         break
+#     time.sleep(5)
 
 
 if __name__ == "__main__":
