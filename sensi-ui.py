@@ -23,7 +23,7 @@ def ishigami():
 
 @app.route("/zeroVFFR")
 def zeroVFFR():
-  return render_template('zerovffr.html')
+  return render_template('zeroVFFR.html')
 
 @app.route("/oneVFFR")
 def oneVFFR():
